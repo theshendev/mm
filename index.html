@@ -55,6 +55,43 @@
   <main id="main">
     <!-- HERO: the name above a horizon; the two coasts of his life as a latitude axis -->
     <section class="hero">
+      <div class="hero-bg" aria-hidden="true">
+        <svg viewBox="0 0 1440 640" preserveAspectRatio="xMinYMax slice">
+          <defs>
+            <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" class="sky-top"/>
+              <stop offset="1" class="sky-bot"/>
+            </linearGradient>
+            <radialGradient id="halo" cx="0.5" cy="0.5" r="0.5">
+              <stop offset="0" class="halo-in"/>
+              <stop offset="1" class="halo-out"/>
+            </radialGradient>
+          </defs>
+          <rect width="1440" height="640" fill="url(#sky)"/>
+          <g transform="translate(280 0)"><circle cx="300" cy="430" r="230" fill="url(#halo)"/>
+          <circle class="sun" cx="300" cy="440" r="86"/>
+          <g class="birds"><path d="M500 300 q9 -8 18 0 q9 -8 18 0"/><path d="M548 330 q6 -6 12 0 q6 -6 12 0"/><path d="M462 344 q5 -5 10 0 q5 -5 10 0"/></g>
+          <g class="skyline">
+            <rect x="560" y="482" width="46" height="24"/><rect x="574" y="456" width="16" height="28"/>
+            <rect x="606" y="488" width="60" height="18"/><rect x="640" y="462" width="14" height="28"/>
+            <rect x="666" y="478" width="38" height="28"/><rect x="704" y="490" width="70" height="16"/>
+            <rect x="720" y="468" width="12" height="24"/><path d="M778 506 v-30 a14 14 0 0 1 28 0 v30z"/>
+            <rect x="810" y="486" width="52" height="20"/><rect x="830" y="460" width="15" height="28"/>
+          </g>
+          <g class="slots"><path d="M577 462v8M582 462v8M587 462v8M643 468v8M647 468v8M651 468v8M723 474v8M729 474v8M833 466v8M838 466v8M843 466v8"/></g></g>
+          <path class="sea1" d="M0 505 H1440 V640 H0Z"/>
+          <g transform="translate(280 0)"><path class="island" d="M110 506 C 160 474 236 462 318 478 C 372 488 418 498 470 506 Z"/>
+          <g class="palm">
+            <path d="M232 484 C 236 450 240 428 252 404"/>
+            <path d="M252 404 c -22 -6 -40 2 -52 16 M252 404 c 20 -12 40 -12 56 0 M252 404 c -6 -20 -24 -30 -40 -30 M252 404 c 10 -20 30 -26 46 -18 M252 404 c 4 18 -2 32 -12 40"/>
+            <path d="M368 492 C 370 470 374 456 382 442"/>
+            <path d="M382 442 c -16 -4 -28 2 -36 12 M382 442 c 14 -8 28 -8 38 0 M382 442 c -4 -14 -16 -20 -28 -20 M382 442 c 8 -14 20 -18 32 -12"/>
+          </g>
+          <g class="glint"><path d="M250 522h100M268 538h64M282 554h36M292 570h16"/></g></g>
+          <path class="sea2" d="M0 552 C 120 538 240 566 360 552 S 600 538 720 552 S 960 566 1080 552 S 1320 538 1440 552 V640 H0Z"/>
+          <path class="sea3" d="M0 598 C 140 584 280 612 420 598 S 700 584 840 598 S 1120 612 1260 598 S 1400 590 1440 596 V640 H0Z"/>
+        </svg>
+      </div>
       <div class="wrap hero-grid">
         <div class="hero-main">
           <p class="kicker">شاعر · منتقد ادبی · روزنامه‌نگار · بازیگر تئاتر</p>
@@ -234,7 +271,16 @@
     </section>
 
     <!-- TIMELINE (includes stage work) -->
-    <section class="band band-deep" id="timeline">
+    <section class="band band-deep has-bg" id="timeline">
+      <div class="night" aria-hidden="true">
+        <svg viewBox="0 0 1440 480" preserveAspectRatio="xMidYMid slice">
+          <g class="stars"><circle cx="663" cy="87" r="1.6"/><circle cx="1333" cy="34" r="0.8"/><circle cx="1097" cy="58" r="1.2"/><circle cx="1193" cy="39" r="1"/><circle cx="76" cy="54" r="1.6"/><circle cx="856" cy="45" r="1"/><circle cx="185" cy="292" r="1.6"/><circle cx="121" cy="299" r="0.8"/><circle cx="457" cy="308" r="0.8"/><circle cx="1181" cy="309" r="1.6"/><circle cx="101" cy="123" r="0.8"/><circle cx="1140" cy="78" r="1.2"/><circle cx="858" cy="83" r="0.8"/><circle cx="1169" cy="167" r="1"/><circle cx="211" cy="307" r="1"/><circle cx="762" cy="59" r="0.8"/><circle cx="1155" cy="40" r="1"/><circle cx="1016" cy="282" r="1.6"/><circle cx="643" cy="248" r="1.6"/><circle cx="740" cy="163" r="1"/><circle cx="368" cy="134" r="0.8"/><circle cx="1176" cy="163" r="1.6"/><circle cx="703" cy="239" r="1.2"/><circle cx="1247" cy="47" r="0.8"/><circle cx="1048" cy="224" r="1"/><circle cx="700" cy="87" r="1.6"/><circle cx="863" cy="30" r="0.8"/><circle cx="1142" cy="303" r="1.2"/><circle cx="696" cy="189" r="1.6"/><circle cx="1187" cy="243" r="0.8"/><circle cx="191" cy="148" r="1.6"/><circle cx="1427" cy="43" r="0.8"/><circle cx="1436" cy="168" r="1.6"/><circle cx="582" cy="207" r="1.2"/><circle cx="46" cy="246" r="1.2"/><circle cx="344" cy="322" r="0.8"/><circle cx="1011" cy="40" r="1"/><circle cx="588" cy="76" r="1"/><circle cx="814" cy="210" r="1.6"/><circle cx="165" cy="95" r="1.6"/><circle cx="822" cy="291" r="1.2"/><circle cx="280" cy="230" r="1.2"/><circle cx="850" cy="193" r="1.6"/><circle cx="472" cy="87" r="0.8"/><circle cx="360" cy="87" r="1"/><circle cx="1348" cy="129" r="0.8"/><circle cx="993" cy="311" r="1"/><circle cx="538" cy="154" r="0.8"/><circle cx="298" cy="224" r="1.2"/><circle cx="1248" cy="299" r="1.2"/><circle cx="257" cy="273" r="0.8"/><circle cx="935" cy="296" r="1.6"/><circle cx="815" cy="214" r="1.6"/><circle cx="212" cy="256" r="1.6"/><circle cx="127" cy="107" r="0.8"/><circle cx="427" cy="235" r="1"/><circle cx="225" cy="184" r="0.8"/><circle cx="209" cy="10" r="1"/><circle cx="1098" cy="61" r="1.2"/><circle cx="1256" cy="23" r="0.8"/><circle cx="425" cy="324" r="1.6"/><circle cx="304" cy="139" r="1.2"/><circle cx="1233" cy="196" r="1.6"/><circle cx="251" cy="69" r="1.6"/><circle cx="954" cy="255" r="1.6"/><circle cx="638" cy="53" r="1"/><circle cx="209" cy="185" r="1.2"/><circle cx="980" cy="92" r="0.8"/><circle cx="420" cy="280" r="1.2"/><circle cx="300" cy="288" r="0.8"/></g>
+          <circle class="moon" cx="180" cy="110" r="34"/>
+          <circle class="moon-cut" cx="196" cy="100" r="30"/>
+          <g class="moonpath"><path d="M140 400h80M152 416h56M164 432h32M172 448h16"/></g>
+          <path class="nsea" d="M0 380 C 160 368 320 392 480 380 S 800 368 960 380 S 1280 392 1440 380 V480 H0Z"/>
+        </svg>
+      </div>
       <div class="wrap">
         <h2 class="h-section">گاه‌شمار</h2>
         <ol class="timeline">
@@ -295,7 +341,10 @@
     </section>
 
     <!-- CONTACT -->
-    <section class="band band-deep" id="contact">
+    <section class="band band-deep has-bg contact-band" id="contact">
+      <div class="skyline-bg" aria-hidden="true">
+        <svg viewBox="0 0 1440 160" preserveAspectRatio="xMidYMax slice"><g><rect x="0" y="115" width="107" height="45"/><rect x="107" y="101" width="73" height="59"/><rect x="160" y="62" width="16" height="41"/><rect x="180" y="100" width="68" height="60"/><rect x="198" y="62" width="22" height="40"/><rect x="248" y="119" width="64" height="41"/><rect x="312" y="122" width="69" height="38"/><rect x="317" y="71" width="19" height="53"/><rect x="381" y="117" width="43" height="43"/><rect x="396" y="67" width="17" height="52"/><rect x="424" y="112" width="97" height="48"/><rect x="521" y="128" width="68" height="32"/><rect x="538" y="90" width="17" height="40"/><rect x="589" y="95" width="101" height="65"/><rect x="690" y="104" width="40" height="56"/><rect x="730" y="92" width="50" height="68"/><rect x="740" y="42" width="20" height="52"/><rect x="780" y="123" width="101" height="37"/><rect x="834" y="93" width="19" height="32"/><rect x="881" y="109" width="99" height="51"/><path d="M908 109 a22 22 0 0 1 44 0z"/><rect x="980" y="124" width="60" height="36"/><path d="M988 124 a22 22 0 0 1 44 0z"/><rect x="1040" y="93" width="99" height="67"/><rect x="1088" y="44" width="21" height="51"/><rect x="1139" y="99" width="59" height="61"/><rect x="1149" y="71" width="14" height="30"/><rect x="1198" y="126" width="107" height="34"/><rect x="1205" y="92" width="17" height="36"/><rect x="1305" y="121" width="72" height="39"/><rect x="1346" y="69" width="17" height="54"/><rect x="1377" y="118" width="81" height="42"/><rect x="1428" y="89" width="16" height="31"/></g></svg>
+      </div>
       <div class="wrap contact">
         <h2 class="h-section">تماس</h2>
         <p>برای شب شعر، گفت‌وگو، نقد یا همکاری:</p>
