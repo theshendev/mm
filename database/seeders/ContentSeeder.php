@@ -12,10 +12,13 @@ use Illuminate\Database\Seeder;
 
 /**
  * Initial site content, gathered from public sources (listed in the Source rows).
- * Safe to re-run: it only fills tables that are still empty.
+ * Safe to re-run: existing rows are matched (books by slug, other lists by text or URL)
+ * and never overwritten, so edits made in the admin panel are kept.
  */
 class ContentSeeder extends Seeder
 {
+    private const THIRTY_BOOK_URL = 'https://www.30book.com/book/68679/%DA%A9%D8%AA%D8%A7%D8%A8-%D8%A8%D8%A7%D9%88%D8%B1-%DA%A9%D9%86%DB%8C%D8%AF-%D8%A7%DB%8C%D9%86-%D9%87%D9%85-%DB%8C%DA%A9-%D8%B4%D9%88%D8%AE%DB%8C-%D8%A8%D9%88%D8%AF-%D8%A7%D8%AB%D8%B1-%D8%B9%D9%84%DB%8C-%D8%A8%D8%A7%D8%A8%D8%A7%DA%86%D8%A7%D9%87%DB%8C-%D9%86%D8%A7%D8%B4%D8%B1-%D8%B3%D8%B1%D8%B2%D9%85%DB%8C%D9%86-%D8%A7%D9%87%D9%88%D8%B1%D8%A7%DB%8C%DB%8C';
+
     public function run(): void
     {
         if (! SiteSetting::query()->exists()) {
@@ -27,12 +30,12 @@ class ContentSeeder extends Seeder
                 'meta_description' => 'وب‌سایت محسن موسوی میرکلایی، شاعر، منتقد ادبی، روزنامه‌نگار و بازیگر تئاتر؛ نویسندهٔ «جزیره‌نشین» و گردآورندهٔ «مقالات آتشی».',
                 'about_lead' => 'محسن موسوی میرکلایی سال ۱۳۶۲ در بابلسر، کنار دریای خزر، به دنیا آمد و در بندر بوشهر، کنار خلیج فارس، بزرگ شد.',
                 'about_body' => '<p>از سال ۱۳۷۸ با بازی در نمایش «هشتمین سفر سندباد» نوشتهٔ بهرام بیضایی بازیگری تئاتر را آغاز کرد و هم‌زمان به شعر، نقد ادبی و روزنامه‌نگاری پرداخت. سال‌ها با نشریات استان بوشهر همکاری کرد و دبیر صفحات ادبی «نسیم جنوب» و «پیغام» بود.</p>'
-                    .'<p>نخستین مجموعه‌شعرش، <a href="#book-jazireh">«جزیره‌نشین»</a>، سال ۱۳۹۵ در مجموعهٔ «کتاب‌های شعر بامداد» منتشر شد. گردآوری و ویرایش <a href="#book-atashi">«مقالات آتشی»</a>، نوشته‌های پراکندهٔ منوچهر آتشی، شاعر بوشهری، از کارهای پژوهشی اوست.</p>',
+                    .'<p>نخستین مجموعه‌شعرش، <a href="#book-jazireh">«جزیره‌نشین»</a>، سال ۱۳۹۵ در مجموعهٔ «کتاب‌های شعر بامداد» منتشر شد. گردآوری و ویرایش <a href="#book-atashi">«مقالات آتشی»</a>، نوشته‌های پراکندهٔ منوچهر آتشی، شاعر بوشهری، از کارهای پژوهشی اوست. مستند <a href="#book-shookhi">«باور کنید: این هم یک شوخی بود!»</a> دربارهٔ زندگی و شعر علی باباچاهی را نیز در سال ۱۳۹۳ ساخته است.</p>',
                 'facts' => [
                     ['label' => 'زادروز', 'value' => '۱۳۶۲، بابلسر'],
                     ['label' => 'زیستگاه', 'value' => 'بندر بوشهر'],
                     ['label' => 'نخستین صحنه', 'value' => '۱۳۷۸، «هشتمین سفر سندباد»'],
-                    ['label' => 'کتاب‌ها', 'value' => 'یک دفتر شعر، یک گردآوری'],
+                    ['label' => 'آثار', 'value' => 'یک دفتر شعر، یک گردآوری، یک فیلم مستند'],
                 ],
                 'writings_intro' => 'نقد ادبی، یادداشت روزنامه و دبیری صفحه‌های ادبی.',
                 'english_body' => '<p>Mohsen Mousavi Mirkalaei (b. 1983, Babolsar) is an Iranian poet, literary critic, journalist and stage actor, raised in the port city of Bushehr on the Persian Gulf.</p>'
@@ -45,8 +48,8 @@ class ContentSeeder extends Seeder
             ]);
         }
 
-        if (! Book::query()->exists()) {
-            Book::create([
+        $books = [
+            [
                 'title' => 'جزیره‌نشین',
                 'slug' => 'jazireh',
                 'kind' => 'مجموعه شعر',
@@ -58,8 +61,8 @@ class ContentSeeder extends Seeder
                 'link_label' => 'مشاهده در ایران‌کتاب',
                 'link_url' => 'https://www.iranketab.ir/book/20697-jazireh-neshin',
                 'sort' => 1,
-            ]);
-            Book::create([
+            ],
+            [
                 'title' => 'مقالات آتشی',
                 'slug' => 'atashi',
                 'kind' => 'گردآوری و ویرایش · نقد و جستار',
@@ -73,7 +76,23 @@ class ContentSeeder extends Seeder
                 'link_label' => 'خبر چاپ دوم در ایسنا',
                 'link_url' => 'https://www.isna.ir/news/1400070301036/',
                 'sort' => 2,
-            ]);
+            ],
+            [
+                'title' => 'باور کنید: این هم یک شوخی بود!',
+                'slug' => 'shookhi',
+                'kind' => 'فیلم مستند · دربارهٔ علی باباچاهی',
+                'cover_style' => 'night',
+                'cover_series' => 'مستند · ۱۳۹۳',
+                'cover_author' => 'کارگردان: محسن موسوی میرکلایی',
+                'meta' => ['کارگردان' => 'محسن موسوی میرکلایی', 'موضوع' => 'زندگی و شعر علی باباچاهی', 'سال ساخت' => '۱۳۹۳', 'ناشر' => 'سرزمین اهورایی'],
+                'description' => 'مستندی دربارهٔ زندگی و شعر علی باباچاهی، شاعر و منتقد ادبی بوشهری، به کارگردانی محسن موسوی میرکلایی. نسخهٔ منتشرشدهٔ آن را نشر سرزمین اهورایی، ناشر «جزیره‌نشین»، عرضه کرده است.',
+                'link_label' => 'مشاهده در سی‌بوک',
+                'link_url' => self::THIRTY_BOOK_URL,
+                'sort' => 3,
+            ],
+        ];
+        foreach ($books as $book) {
+            Book::query()->firstOrCreate(['slug' => $book['slug']], $book);
         }
 
         if (! Writing::query()->exists()) {
@@ -90,47 +109,47 @@ class ContentSeeder extends Seeder
             }
         }
 
-        if (! TimelineEvent::query()->exists()) {
-            $events = [
-                ['year' => '۱۳۶۲', 'text' => 'تولد در بابلسر، کنار دریای خزر. کودکی و نوجوانی در بندر بوشهر.'],
-                ['year' => '۱۳۷۸', 'text' => 'آغاز بازیگری تئاتر با «هشتمین سفر سندباد» نوشتهٔ بهرام بیضایی.', 'tag' => 'صحنه'],
-                ['year' => '۱۳۹۱', 'text' => 'یادداشت‌نویسی ادبی در روزنامهٔ آرمان.'],
-                ['year' => '۱۳۹۵', 'text' => 'انتشار «جزیره‌نشین»، دفتر چهارم «کتاب‌های شعر بامداد».'],
-                ['year' => '۱۳۹۷', 'text' => 'نقد «شیپور نه، لالایی اصلِ این ماجراست!» در فراتاب.'],
-                ['year' => '۱۴۰۰', 'text' => 'چاپ دوم «مقالات آتشی» با ویراست تازه و نمایه، نشر افراز.'],
-            ];
-            foreach ($events as $i => $row) {
-                TimelineEvent::create($row + ['sort' => $i + 1]);
-            }
+        $events = [
+            ['year' => '۱۳۶۲', 'text' => 'تولد در بابلسر، کنار دریای خزر. کودکی و نوجوانی در بندر بوشهر.'],
+            ['year' => '۱۳۷۸', 'text' => 'آغاز بازیگری تئاتر با «هشتمین سفر سندباد» نوشتهٔ بهرام بیضایی.', 'tag' => 'صحنه'],
+            ['year' => '۱۳۹۱', 'text' => 'یادداشت‌نویسی ادبی در روزنامهٔ آرمان.'],
+            ['year' => '۱۳۹۳', 'text' => 'ساخت مستند «باور کنید: این هم یک شوخی بود!» دربارهٔ زندگی و شعر علی باباچاهی.', 'tag' => 'فیلم', 'sort' => 3],
+            ['year' => '۱۳۹۵', 'text' => 'انتشار «جزیره‌نشین»، دفتر چهارم «کتاب‌های شعر بامداد».'],
+            ['year' => '۱۳۹۷', 'text' => 'نقد «شیپور نه، لالایی اصلِ این ماجراست!» در فراتاب.'],
+            ['year' => '۱۴۰۰', 'text' => 'چاپ دوم «مقالات آتشی» با ویراست تازه و نمایه، نشر افراز.'],
+        ];
+        foreach ($events as $i => $row) {
+            TimelineEvent::query()->firstOrCreate(['year' => $row['year'], 'text' => $row['text']], $row + ['sort' => $i + 1]);
         }
 
-        if (! PressItem::query()->exists()) {
-            $press = [
-                ['outlet' => 'ایسنا', 'title' => 'چاپ دوباره «مقالات آتشی» در زادروزش', 'url' => 'https://www.isna.ir/news/1400070301036/',
-                    'summary' => 'گفت‌وگو با گردآورنده دربارهٔ ویراست تازهٔ کتاب.'],
-                ['outlet' => 'ایسنا، به نقل فالو نیوز', 'title' => 'دربارهٔ محمد آذری، شاعر پیشکسوت',
-                    'url' => 'https://follownews.ir/%D9%85%D8%AD%D9%85%D8%AF-%D8%A2%D8%B0%D8%B1%DB%8C-%D8%AA%D8%AD%D8%AA-%D9%85%D8%B1%D8%A7%D9%82%D8%A8%D8%AA%E2%80%8C%D9%87%D8%A7%DB%8C-%D9%88%DB%8C%DA%98%D9%87/',
-                    'summary' => 'گفته‌های او دربارهٔ وضعیت محمد آذری، و بعدتر خبر درگذشت او.'],
-                ['outlet' => 'برنا', 'title' => 'سه کتاب شعر به چاپ رسید', 'url' => 'https://borna.news/fa/amp/news/525217',
-                    'summary' => 'خبر انتشار «جزیره‌نشین» در مجموعهٔ «کتاب‌های شعر بامداد».'],
-            ];
-            foreach ($press as $i => $row) {
-                PressItem::create($row + ['sort' => $i + 1]);
-            }
+        $press = [
+            ['outlet' => 'ایسنا', 'title' => 'چاپ دوباره «مقالات آتشی» در زادروزش', 'url' => 'https://www.isna.ir/news/1400070301036/',
+                'summary' => 'گفت‌وگو با گردآورنده دربارهٔ ویراست تازهٔ کتاب.'],
+            ['outlet' => 'ایسنا، به نقل فالو نیوز', 'title' => 'دربارهٔ محمد آذری، شاعر پیشکسوت',
+                'url' => 'https://follownews.ir/%D9%85%D8%AD%D9%85%D8%AF-%D8%A2%D8%B0%D8%B1%DB%8C-%D8%AA%D8%AD%D8%AA-%D9%85%D8%B1%D8%A7%D9%82%D8%A8%D8%AA%E2%80%8C%D9%87%D8%A7%DB%8C-%D9%88%DB%8C%DA%98%D9%87/',
+                'summary' => 'گفته‌های او دربارهٔ وضعیت محمد آذری، و بعدتر خبر درگذشت او.'],
+            ['outlet' => 'خبرآنلاین، به نقل از ایسنا', 'title' => 'علی باباچاهی درگذشت', 'url' => 'https://www.khabaronline.ir/news/2186269/',
+                'summary' => 'موسوی میرکلایی، کارگردان مستند «این هم یک شوخی بود»، خبر درگذشت علی باباچاهی را اعلام کرد.'],
+            ['outlet' => 'برنا', 'title' => 'سه کتاب شعر به چاپ رسید', 'url' => 'https://borna.news/fa/amp/news/525217',
+                'summary' => 'خبر انتشار «جزیره‌نشین» در مجموعهٔ «کتاب‌های شعر بامداد».'],
+        ];
+        foreach ($press as $i => $row) {
+            PressItem::query()->firstOrCreate(['url' => $row['url']], $row + ['sort' => $i + 1]);
         }
 
-        if (! Source::query()->exists()) {
-            $sources = [
-                ['title' => 'ایران‌کتاب: کتاب‌های محسن موسوی میرکلایی', 'url' => 'https://www.iranketab.ir/profile/12048-mohsen-mousavi'],
-                ['title' => 'ایران‌کتاب: جزیره‌نشین', 'url' => 'https://www.iranketab.ir/book/20697-jazireh-neshin'],
-                ['title' => 'فراکتاب: مقالات آتشی', 'url' => 'https://www.faraketab.ir/book/19555-%D9%85%D9%82%D8%A7%D9%84%D8%A7%D8%AA-%D8%A2%D8%AA%D8%B4%DB%8C'],
-                ['title' => 'ایسنا: چاپ دوباره «مقالات آتشی» در زادروزش', 'url' => 'https://www.isna.ir/news/1400070301036/'],
-                ['title' => 'فراتاب: شیپور نه، لالایی اصلِ این ماجراست!', 'url' => 'https://www.faratab.com/news/7937/'],
-                ['title' => 'برنا: سه کتاب شعر به چاپ رسید', 'url' => 'https://borna.news/fa/amp/news/525217'],
-            ];
-            foreach ($sources as $i => $row) {
-                Source::create($row + ['sort' => $i + 1]);
-            }
+        $sources = [
+            ['title' => 'ایران‌کتاب: کتاب‌های محسن موسوی میرکلایی', 'url' => 'https://www.iranketab.ir/profile/12048-mohsen-mousavi'],
+            ['title' => 'ایران‌کتاب: جزیره‌نشین', 'url' => 'https://www.iranketab.ir/book/20697-jazireh-neshin'],
+            ['title' => 'فراکتاب: مقالات آتشی', 'url' => 'https://www.faraketab.ir/book/19555-%D9%85%D9%82%D8%A7%D9%84%D8%A7%D8%AA-%D8%A2%D8%AA%D8%B4%DB%8C'],
+            ['title' => 'ایسنا: چاپ دوباره «مقالات آتشی» در زادروزش', 'url' => 'https://www.isna.ir/news/1400070301036/'],
+            ['title' => 'فراتاب: شیپور نه، لالایی اصلِ این ماجراست!', 'url' => 'https://www.faratab.com/news/7937/'],
+            ['title' => 'برنا: سه کتاب شعر به چاپ رسید', 'url' => 'https://borna.news/fa/amp/news/525217'],
+            ['title' => 'سی‌بوک: باور کنید این هم یک شوخی بود', 'url' => self::THIRTY_BOOK_URL],
+            ['title' => 'ویکی‌پدیا: علی باباچاهی', 'url' => 'https://fa.wikipedia.org/wiki/%D8%B9%D9%84%DB%8C_%D8%A8%D8%A7%D8%A8%D8%A7%DA%86%D8%A7%D9%87%DB%8C'],
+            ['title' => 'خبرآنلاین: علی باباچاهی درگذشت', 'url' => 'https://www.khabaronline.ir/news/2186269/'],
+        ];
+        foreach ($sources as $i => $row) {
+            Source::query()->firstOrCreate(['url' => $row['url']], $row + ['sort' => $i + 1]);
         }
     }
 }

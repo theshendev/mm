@@ -57,6 +57,22 @@ Every page sets its own title, description, canonical link, Open Graph / Twitter
 
 You can drag lists to reorder them. Most content has a **نمایش در سایت** toggle that hides an item without deleting it.
 
+## Images from the web
+
+The panel can fetch images straight from the web. Paste either an image URL or a shop/product page (for example 30book or Iranketab), and the page's share image is downloaded into `storage/app/public`:
+
+- **کتاب‌ها › ویرایش › دریافت جلد از وب**: book cover (pre-filled with the book's shop link)
+- **متن‌های سایت › دریافت تصویر شاعر از وب**: portrait
+- **گالری › افزودن عکس از وب**: adds a hidden gallery photo to caption and publish
+
+To fetch every missing book cover from the books' shop links in one go:
+
+```bash
+php artisan site:import-covers
+```
+
+Only public `http(s)` addresses are accepted. Make sure you have the right to publish an image before importing it.
+
 ## Contact form and newsletter
 
 - Both forms are rate-limited (5 per minute), use a hidden honeypot field against bots, and show Persian validation messages.
@@ -82,9 +98,12 @@ database/seeders/ContentSeeder.php        initial content gathered from public s
 ```
 
 ## Still to fill in
+Re-running `php artisan db:seed` is safe: it adds missing books, timeline, press and source entries without overwriting panel edits.
+
 The seeder leaves these empty on purpose, because no reliable source was found. Add them in the panel:
 - a short excerpt from «جزیره‌نشین» (Books → جزیره‌نشین → گزیده)
-- a portrait (متن‌های سایت → درباره)
+- a portrait (متن‌های سایت → درباره, or «دریافت تصویر شاعر از وب»)
+- book and documentary covers (`php artisan site:import-covers` on the server)
 - the contact email and social links (متن‌های سایت → تماس)
 
 ## Tests

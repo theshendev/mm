@@ -2,6 +2,7 @@
 
 namespace App\Filament\Pages;
 
+use App\Filament\Actions\ImportImageAction;
 use App\Models\SiteSetting;
 use BackedEnum;
 use Filament\Forms\Components\FileUpload;
@@ -37,6 +38,22 @@ class SiteSettings extends Page
     public function mount(): void
     {
         $this->form->fill(SiteSetting::current()->attributesToArray());
+    }
+
+    protected function getHeaderActions(): array
+    {
+        return [
+            ImportImageAction::make(
+                name: 'importPortrait',
+                label: 'دریافت تصویر شاعر از وب',
+                directory: 'portraits',
+                onImported: function (string $path): void {
+                    $setting = SiteSetting::current();
+                    $setting->update(['portrait' => $path]);
+                    $this->form->fill($setting->fresh()->attributesToArray());
+                },
+            )->modalDescription('نشانی یک عکس، یا صفحه‌ای که عکس شاعر در آن است، را بدهید. تغییرهای ذخیره‌نشدهٔ این صفحه پس از دریافت تصویر از بین می‌روند. پیش از استفاده، مطمئن شوید اجازهٔ انتشار عکس را دارید.'),
+        ];
     }
 
     public function form(Schema $schema): Schema

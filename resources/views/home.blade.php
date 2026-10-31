@@ -94,7 +94,7 @@
     @if ($books->isNotEmpty())
     <section class="band band-tint" id="books">
         <div class="wrap">
-            <h2 class="h-section">کتاب‌ها</h2>
+            <h2 class="h-section">کتاب‌ها و آثار</h2>
             @foreach ($books as $book)
                 <article class="book" id="book-{{ $book->slug }}">
                     @if ($book->cover_image)
@@ -105,6 +105,8 @@
                             <span class="cover-title">{{ $book->title }}</span>
                             @if ($book->cover_style === 'ember')
                                 <svg class="cover-mark" viewBox="0 0 120 40"><path d="M24 34 L60 8 L96 34"/><path d="M0 36 H120"/></svg>
+                            @elseif ($book->cover_style === 'night')
+                                <svg class="cover-mark" viewBox="0 0 120 40"><rect x="10" y="6" width="100" height="28" rx="2"/><path d="M10 12h100M10 28h100M30 6v6M50 6v6M70 6v6M90 6v6M30 28v6M50 28v6M70 28v6M90 28v6"/><path d="M54 15l12 5-12 5z"/></svg>
                             @else
                                 <svg class="cover-mark" viewBox="0 0 120 40"><path d="M14 30 Q 40 8 60 22 T 106 30"/><path d="M0 34 C 20 30 40 38 60 34 S 100 30 120 34"/></svg>
                             @endif

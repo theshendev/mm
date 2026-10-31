@@ -39,7 +39,7 @@ class BookForm
                         Select::make('cover_style')->label('رنگ جلد')->options([
                             'sea' => 'دریایی',
                             'ember' => 'آجری',
-                            'night' => 'شب',
+                            'night' => 'شب (فیلم)',
                         ])->default('sea')->required(),
                         TextInput::make('cover_series')->label('نوشتهٔ بالای جلد'),
                         TextInput::make('cover_author')->label('نام روی جلد'),

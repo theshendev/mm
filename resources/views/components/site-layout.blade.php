@@ -15,7 +15,7 @@
         ['href' => route('home').'#about', 'label' => 'درباره', 'show' => true, 'active' => false],
         ['href' => route('poems.index'), 'label' => 'شعرها', 'show' => $navCounts['poems'] > 0, 'active' => request()->routeIs('poems.*')],
         ['href' => route('essays.index'), 'label' => 'جستارها', 'show' => $navCounts['essays'] > 0, 'active' => request()->routeIs('essays.*')],
-        ['href' => route('home').'#books', 'label' => 'کتاب‌ها', 'show' => $navCounts['books'] > 0, 'active' => false],
+        ['href' => route('home').'#books', 'label' => 'آثار', 'show' => $navCounts['books'] > 0, 'active' => false],
         ['href' => route('events.index'), 'label' => 'برنامه‌ها', 'show' => $navCounts['events'] > 0, 'active' => request()->routeIs('events.*')],
         ['href' => route('gallery.index'), 'label' => 'گالری', 'show' => $navCounts['gallery'] > 0, 'active' => request()->routeIs('gallery.*')],
         ['href' => route('home').'#contact', 'label' => 'تماس', 'show' => true, 'active' => false],

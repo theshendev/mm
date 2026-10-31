@@ -2,10 +2,12 @@
 
 namespace Tests\Feature\Filament;
 
+use App\Filament\Resources\Books\Pages\EditBook;
 use App\Filament\Resources\ContactMessages\ContactMessageResource;
 use App\Filament\Resources\Essays\EssayResource;
 use App\Filament\Resources\Poems\PoemResource;
 use App\Filament\Resources\Subscribers\Pages\ListSubscribers;
+use App\Models\Book;
 use App\Models\ContactMessage;
 use App\Models\Essay;
 use App\Models\Event;
@@ -14,6 +16,9 @@ use App\Models\Poem;
 use App\Models\Subscriber;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
+use Livewire\Livewire;
 use Tests\TestCase;
 
 class AdminPanelTest extends TestCase
@@ -77,5 +82,21 @@ class AdminPanelTest extends TestCase
 
         $this->assertStringContainsString('active@example.com', $output);
         $this->assertStringNotContainsString('gone@example.com', $output);
+    }
+
+    public function test_cover_can_be_fetched_from_the_books_shop_page(): void
+    {
+        Storage::fake('public');
+        Http::fake([
+            'https://93.184.216.34/book' => Http::response('<meta property="og:image" content="https://93.184.216.34/c.png">', 200, ['Content-Type' => 'text/html']),
+            'https://93.184.216.34/c.png' => Http::response(base64_decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=='), 200, ['Content-Type' => 'image/png']),
+        ]);
+        $book = Book::factory()->create(['link_url' => 'https://93.184.216.34/book']);
+
+        Livewire::test(EditBook::class, ['record' => $book->getRouteKey()])
+            ->callAction('importCover', data: ['url' => 'https://93.184.216.34/book'])
+            ->assertHasNoActionErrors();
+
+        Storage::disk('public')->assertExists($book->fresh()->cover_image);
     }
 }
