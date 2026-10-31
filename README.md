@@ -4,6 +4,7 @@ A Laravel site for the poet and critic **Mohsen Mousavi Mirkalaei** (محسن م
 
 - Laravel 13, PHP 8.3+
 - Filament 5 admin at `/admin`, in Persian
+- Jalali dates via `morilog/jalali`
 - SQLite by default; any Laravel-supported database works
 
 ## Setup
@@ -23,28 +24,59 @@ Open http://localhost:8000 for the site and http://localhost:8000/admin for the 
 
 To create the admin account during seeding instead, set `ADMIN_EMAIL` and `ADMIN_PASSWORD` in `.env` before running `php artisan db:seed`.
 
+## Public pages
+
+| URL | Shows |
+| --- | --- |
+| `/` | Hero, next event, about, featured poem, books, latest essays and writings, timeline, gallery strip, press, English summary, contact form |
+| `/poems`, `/poems/{slug}` | Poems grouped by book; each poem on its own page with previous/next links and share buttons |
+| `/essays`, `/essays/{slug}` | Full-text essays with reading time and share buttons |
+| `/events` | Upcoming and past readings with Jalali dates; `/events/{id}.ics` adds one to a calendar |
+| `/gallery` | Photos (with lightbox) and links to videos |
+| `/sitemap.xml`, `/robots.txt` | Generated from published content |
+
+**Sections appear once they have content.** Poems, essays, events and the gallery start empty: no poems or photos were made up. Their pages return 404 and their menu links stay hidden until something is published in the panel.
+
+Every page sets its own title, description, canonical link, Open Graph / Twitter tags and JSON-LD (Person, CreativeWork, Article, Event). The default share image is `public/og.png`.
+
 ## What the admin panel edits
 
 | Panel page | Controls |
 | --- | --- |
+| داشبورد (Dashboard) | Counts, latest messages, upcoming events |
 | متن‌های سایت (Site text) | Name, roles line, hero intro, portrait upload, about text and facts, English summary, contact email and social links |
-| کتاب‌ها (Books) | Title, link slug, details (publisher, year…), description, excerpt, drawn-cover colours or an uploaded cover image, link |
-| نقد و نوشتار (Writings) | Reviews, columns and editorial work |
-| گاه‌شمار (Timeline) | Year, event, optional tag |
-| در رسانه‌ها (Press) | Outlet, headline, link, summary |
-| منابع (Sources) | Footer source links |
+| محتوا › کتاب‌ها (Books) | Title, link slug, details (publisher, year…), description, excerpt, drawn-cover colours or an uploaded cover image, link |
+| محتوا › شعرها (Poems) | Text (one line per line, blank line between stanzas), book, date, featured flag |
+| محتوا › جستارها (Essays) | Rich text, summary, cover image, publish date, original source |
+| محتوا › نقد و نوشتار (Writings) | Reviews and columns published elsewhere (link-only) |
+| محتوا › برنامه‌ها (Events) | Date and time (with a Jalali preview), place, status (scheduled / postponed / cancelled), link |
+| محتوا › گالری (Gallery) | Photos, or videos by URL with an optional thumbnail |
+| محتوا › گاه‌شمار، در رسانه‌ها، منابع | Timeline, press and footer sources |
+| مخاطبان › پیام‌ها (Messages) | Contact-form inbox: unread badge, mark read/unread, reply by e-mail |
+| مخاطبان › خبرنامه (Newsletter) | Subscribers and a **خروجی CSV** export |
 
-You can drag lists to reorder them. Books, writings and press items have a **نمایش در سایت** toggle that hides an item without deleting it.
+You can drag lists to reorder them. Most content has a **نمایش در سایت** toggle that hides an item without deleting it.
+
+## Contact form and newsletter
+
+- Both forms are rate-limited (5 per minute), use a hidden honeypot field against bots, and show Persian validation messages.
+- Messages are always stored in the admin inbox. To also receive them by e-mail, configure `MAIL_*` in `.env` and set `CONTACT_NOTIFY_EMAIL` (defaults to `ADMIN_EMAIL`).
+- The newsletter only collects addresses; nothing is sent. Export them as CSV from the panel.
 
 ## Structure
 
 ```
-app/Http/Controllers/HomeController.php   loads all content for the page
-app/Models/                               Book, Writing, TimelineEvent, PressItem, Source, SiteSetting
+app/Http/Controllers/                     home, poems, essays, events (+ .ics), gallery, contact, newsletter, sitemap
+app/Models/                               Book, Poem, Essay, Event, GalleryItem, Writing, TimelineEvent,
+                                          PressItem, Source, ContactMessage, Subscriber, SiteSetting
+app/Support/Persian.php                   Persian digits, Jalali dates, Persian slugs, reading time
 app/Filament/Pages/SiteSettings.php       singleton settings form
-app/Filament/Resources/                   CRUD for each content type
-resources/views/home.blade.php            the public page
-resources/views/partials/                 inline SVG scenes (sea, night sky, windcatcher skyline)
+app/Filament/Resources/                   CRUD for each content type, inbox, subscribers
+app/Filament/Widgets/                     dashboard widgets
+resources/views/components/site-layout    shared layout with SEO tags, nav and footer
+resources/views/home.blade.php            the home page
+resources/views/{poems,essays,events,gallery}/  section pages
+resources/views/partials/                 inline SVG scenes, contact form, newsletter, share bar
 public/assets/                            stylesheet, script, favicon
 database/seeders/ContentSeeder.php        initial content gathered from public sources
 ```

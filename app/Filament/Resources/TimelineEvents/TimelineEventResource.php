@@ -13,6 +13,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class TimelineEventResource extends Resource
 {
@@ -20,13 +21,15 @@ class TimelineEventResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedClock;
 
+    protected static string|UnitEnum|null $navigationGroup = 'محتوا';
+
     protected static ?string $modelLabel = 'رویداد';
 
     protected static ?string $pluralModelLabel = 'گاه‌شمار';
 
     protected static ?string $recordTitleAttribute = 'year';
 
-    protected static ?int $navigationSort = 3;
+    protected static ?int $navigationSort = 7;
 
     public static function form(Schema $schema): Schema
     {

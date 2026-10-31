@@ -1,73 +1,27 @@
 @php
-    $words = preg_split('/\s+/u', trim($settings->name));
+    $words = preg_split('/\s+/u', trim($site->name));
     $nameFirst = implode(' ', array_slice($words, 0, 2));
     $nameRest = implode(' ', array_slice($words, 2));
     $html = fn (?string $value) => $value ? str($value)->sanitizeHtml() : '';
 @endphp
-<!doctype html>
-<html lang="fa" dir="rtl">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <title>{{ $settings->name }}</title>
-    <meta name="claude:viewport-fit-sides" content="cover">
-    @if ($settings->meta_description)
-        <meta name="description" content="{{ $settings->meta_description }}">
-    @endif
-    <meta name="color-scheme" content="light dark">
-    <meta property="og:title" content="{{ $settings->name }}">
-    <meta property="og:description" content="{{ $settings->kicker }}">
-    <link rel="icon" href="{{ asset('assets/img/favicon.svg') }}" type="image/svg+xml">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&family=Noto+Naskh+Arabic:wght@400;500;700&family=Vazirmatn:wght@300;400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}?v={{ filemtime(public_path('assets/css/style.css')) }}">
-    <script type="application/ld+json">
-        {!! json_encode([
-            '@context' => 'https://schema.org',
-            '@type' => 'Person',
-            'name' => $settings->name,
-            'alternateName' => 'Mohsen Mousavi Mirkalaei',
-            'birthPlace' => 'Babolsar, Iran',
-            'jobTitle' => ['Poet', 'Literary critic', 'Journalist', 'Stage actor'],
-        ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_HEX_TAG) !!}
-    </script>
-</head>
-<body>
-<a class="skip" href="#main">رفتن به محتوا</a>
+<x-site-layout :schema="[
+    '@context' => 'https://schema.org',
+    '@type' => 'Person',
+    'name' => $site->name,
+    'alternateName' => 'Mohsen Mousavi Mirkalaei',
+    'birthPlace' => 'Babolsar, Iran',
+    'jobTitle' => ['Poet', 'Literary critic', 'Journalist', 'Stage actor'],
+    'url' => route('home'),
+]">
 
-<header class="site-header" id="top">
-    <nav class="nav wrap" aria-label="ناوبری اصلی">
-        <a class="brand" href="#top">{{ $settings->brand ?: $settings->name }}</a>
-        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="باز کردن منو">
-            <span></span><span></span><span></span>
-        </button>
-        <ul class="nav-links" id="nav-links">
-            <li><a href="#about">درباره</a></li>
-            @if ($books->isNotEmpty())<li><a href="#books">کتاب‌ها</a></li>@endif
-            @if ($writings->isNotEmpty())<li><a href="#writings">نقد و نوشتار</a></li>@endif
-            @if ($timeline->isNotEmpty())<li><a href="#timeline">گاه‌شمار</a></li>@endif
-            @if ($press->isNotEmpty())<li><a href="#press">رسانه‌ها</a></li>@endif
-            <li><a href="#contact">تماس</a></li>
-            @if ($settings->english_body)<li><a href="#english" lang="en" dir="ltr">English</a></li>@endif
-            <li>
-                <button class="theme-toggle" type="button" aria-label="تغییر حالت روشن و تاریک" title="روشن / تاریک">
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
-                </button>
-            </li>
-        </ul>
-    </nav>
-</header>
-
-<main id="main">
     {{-- HERO --}}
     <section class="hero">
         @include('partials.hero-scene')
         <div class="wrap hero-grid">
             <div class="hero-main">
-                @if ($settings->kicker)<p class="kicker">{{ $settings->kicker }}</p>@endif
+                @if ($site->kicker)<p class="kicker">{{ $site->kicker }}</p>@endif
                 <h1 class="hero-name"><span>{{ $nameFirst }}</span>@if ($nameRest !== '')<span>{{ $nameRest }}</span>@endif</h1>
-                @if ($settings->hero_lede)<p class="hero-lede">{{ $settings->hero_lede }}</p>@endif
+                @if ($site->hero_lede)<p class="hero-lede">{{ $site->hero_lede }}</p>@endif
                 <div class="hero-cta">
                     @if ($books->isNotEmpty())<a class="btn btn-solid" href="#books">کتاب‌ها</a>@endif
                     <a class="btn btn-line" href="#about">دربارهٔ شاعر</a>
@@ -78,12 +32,25 @@
         <div class="horizon" aria-hidden="true"></div>
     </section>
 
+    {{-- NEXT EVENT --}}
+    @if ($nextEvent)
+        <aside class="next-event" aria-label="برنامهٔ پیش رو">
+            <div class="wrap next-event-inner">
+                <span class="next-event-label">برنامهٔ پیش رو</span>
+                <time datetime="{{ $nextEvent->starts_at->toIso8601String() }}">{{ \App\Support\Persian::date($nextEvent->starts_at, '%A %e %B') }}</time>
+                <strong>{{ $nextEvent->title }}</strong>
+                @if ($nextEvent->place())<span class="next-event-place">{{ $nextEvent->place() }}</span>@endif
+                <a href="{{ route('events.index') }}">همهٔ برنامه‌ها</a>
+            </div>
+        </aside>
+    @endif
+
     {{-- ABOUT --}}
     <section class="band" id="about">
         <div class="wrap about">
-            <div class="arch" role="img" aria-label="{{ $settings->portrait ? $settings->name : 'جای تصویر شاعر' }}">
-                @if ($settings->portrait)
-                    <img src="{{ Storage::disk('public')->url($settings->portrait) }}" alt="{{ $settings->name }}">
+            <div class="arch" role="img" aria-label="{{ $site->portrait ? $site->name : 'جای تصویر شاعر' }}">
+                @if ($site->portrait)
+                    <img src="{{ Storage::disk('public')->url($site->portrait) }}" alt="{{ $site->name }}">
                 @else
                     <span class="arch-mark">م</span>
                     <span class="arch-note">جای تصویر</span>
@@ -91,11 +58,11 @@
             </div>
             <div class="about-text">
                 <h2 class="h-section">درباره</h2>
-                @if ($settings->about_lead)<p class="lead">{{ $settings->about_lead }}</p>@endif
-                <div class="prose">{!! $html($settings->about_body) !!}</div>
-                @if (! empty($settings->facts))
+                @if ($site->about_lead)<p class="lead">{{ $site->about_lead }}</p>@endif
+                <div class="prose">{!! $html($site->about_body) !!}</div>
+                @if (! empty($site->facts))
                     <dl class="facts">
-                        @foreach ($settings->facts as $fact)
+                        @foreach ($site->facts as $fact)
                             <div><dt>{{ $fact['label'] ?? '' }}</dt><dd>{{ $fact['value'] ?? '' }}</dd></div>
                         @endforeach
                     </dl>
@@ -103,6 +70,25 @@
             </div>
         </div>
     </section>
+
+    {{-- FEATURED POEM --}}
+    @if ($featuredPoem)
+        <section class="band featured-poem" aria-labelledby="featured-title">
+            <div class="wrap featured-inner">
+                <p class="label">شعر برگزیده</p>
+                <h2 class="featured-title" id="featured-title"><a href="{{ route('poems.show', $featuredPoem) }}">{{ $featuredPoem->title }}</a></h2>
+                <div class="verse verse-teaser">
+                    @foreach (array_slice($featuredPoem->stanzas(), 0, 2) as $stanza)
+                        <p>@foreach ($stanza as $line){{ $line }}@if (! $loop->last)<br>@endif @endforeach</p>
+                    @endforeach
+                </div>
+                <div class="featured-links">
+                    <a class="more" href="{{ route('poems.show', $featuredPoem) }}">خواندن کامل شعر</a>
+                    <a class="more more-quiet" href="{{ route('poems.index') }}">همهٔ شعرها</a>
+                </div>
+            </div>
+        </section>
+    @endif
 
     {{-- BOOKS --}}
     @if ($books->isNotEmpty())
@@ -136,6 +122,13 @@
                             </dl>
                         @endif
                         @if ($book->description)<p>{{ $book->description }}</p>@endif
+                        @php($bookPoem = $book->poems->first())
+                        @if (! $book->excerpt && $bookPoem)
+                            <blockquote class="excerpt">
+                                <p>{!! nl2br(e($bookPoem->opening(4))) !!}</p>
+                                <cite><a href="{{ route('poems.show', $bookPoem) }}">از شعر «{{ $bookPoem->title }}»</a></cite>
+                            </blockquote>
+                        @endif
                         @if ($book->excerpt)
                             <blockquote class="excerpt">
                                 <p>{!! nl2br(e($book->excerpt)) !!}</p>
@@ -153,11 +146,21 @@
     @endif
 
     {{-- WRITINGS --}}
-    @if ($writings->isNotEmpty())
+    @if ($writings->isNotEmpty() || $latestEssays->isNotEmpty())
     <section class="band" id="writings">
         <div class="wrap">
             <h2 class="h-section">نقد و نوشتار</h2>
-            @if ($settings->writings_intro)<p class="section-sub">{{ $settings->writings_intro }}</p>@endif
+            @if ($site->writings_intro)<p class="section-sub">{{ $site->writings_intro }}</p>@endif
+            @if ($latestEssays->isNotEmpty())
+                <div class="essay-cards">
+                    @foreach ($latestEssays as $essay)
+                        @include('essays.card', ['essay' => $essay])
+                    @endforeach
+                </div>
+                <p class="section-more"><a class="more" href="{{ route('essays.index') }}">همهٔ جستارها</a></p>
+            @endif
+            @if ($writings->isNotEmpty())
+            @if ($latestEssays->isNotEmpty())<h3 class="h-sub">در نشریه‌ها</h3>@endif
             <ul class="writings">
                 @foreach ($writings as $writing)
                     <li>
@@ -176,6 +179,7 @@
                     </li>
                 @endforeach
             </ul>
+            @endif
         </div>
     </section>
     @endif
@@ -193,6 +197,17 @@
             </ol>
         </div>
     </section>
+    @endif
+
+    {{-- GALLERY --}}
+    @if ($galleryStrip->isNotEmpty())
+        <section class="band band-tint" id="gallery-strip">
+            <div class="wrap">
+                <h2 class="h-section">گالری</h2>
+                @include('gallery.grid', ['items' => $galleryStrip, 'compact' => true])
+                <p class="section-more"><a class="more" href="{{ route('gallery.index') }}">همهٔ عکس‌ها و ویدیوها</a></p>
+            </div>
+        </section>
     @endif
 
     {{-- PRESS --}}
@@ -220,11 +235,11 @@
     @endif
 
     {{-- ENGLISH --}}
-    @if ($settings->english_body)
+    @if ($site->english_body)
     <section class="band band-tint english" id="english" lang="en" dir="ltr">
         <div class="wrap en-grid">
             <h2 class="h-en">In English</h2>
-            <div class="en-body">{!! $html($settings->english_body) !!}</div>
+            <div class="en-body">{!! $html($site->english_body) !!}</div>
         </div>
     </section>
     @endif
@@ -232,43 +247,25 @@
     {{-- CONTACT --}}
     <section class="band band-deep has-bg contact-band" id="contact">
         @include('partials.skyline')
-        <div class="wrap contact">
+        <div class="wrap contact-grid">
+            <div class="contact">
             <h2 class="h-section">تماس</h2>
-            @if ($settings->contact_intro)<p>{{ $settings->contact_intro }}</p>@endif
-            @if ($settings->contact_email)
+            @if ($site->contact_intro)<p>{{ $site->contact_intro }}</p>@endif
+            @if ($site->contact_email)
                 <div class="mail-row">
-                    <a class="mail" id="mail" dir="ltr" href="mailto:{{ $settings->contact_email }}">{{ $settings->contact_email }}</a>
+                    <a class="mail" id="mail" dir="ltr" href="mailto:{{ $site->contact_email }}">{{ $site->contact_email }}</a>
                     <button class="copy" type="button" id="copy-mail" data-target="mail">کپی نشانی</button>
                 </div>
             @endif
-            @if (! empty($settings->socials))
+            @if (! empty($site->socials))
                 <ul class="socials">
-                    @foreach ($settings->socials as $social)
+                    @foreach ($site->socials as $social)
                         <li><a href="{{ $social['url'] ?? '#' }}" target="_blank" rel="noopener">{{ $social['label'] ?? '' }}</a></li>
                     @endforeach
                 </ul>
             @endif
+            </div>
+            @include('partials.contact-form')
         </div>
     </section>
-</main>
-
-<footer class="site-footer">
-    <div class="wrap footer-grid">
-        @if ($sources->isNotEmpty())
-            <details class="sources">
-                <summary>منابع</summary>
-                <ul>
-                    @foreach ($sources as $source)
-                        <li><a href="{{ $source->url }}" target="_blank" rel="noopener">{{ $source->title }}</a></li>
-                    @endforeach
-                </ul>
-            </details>
-        @endif
-        <p class="copyright">© <span id="year"></span> {{ $settings->name }}</p>
-        <a class="to-top" href="#top">بازگشت به بالا ↑</a>
-    </div>
-</footer>
-
-<script src="{{ asset('assets/js/main.js') }}?v={{ filemtime(public_path('assets/js/main.js')) }}"></script>
-</body>
-</html>
+</x-site-layout>

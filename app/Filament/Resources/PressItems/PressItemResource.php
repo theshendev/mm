@@ -13,6 +13,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class PressItemResource extends Resource
 {
@@ -20,13 +21,15 @@ class PressItemResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedNewspaper;
 
+    protected static string|UnitEnum|null $navigationGroup = 'محتوا';
+
     protected static ?string $modelLabel = 'خبر';
 
     protected static ?string $pluralModelLabel = 'در رسانه‌ها';
 
     protected static ?string $recordTitleAttribute = 'title';
 
-    protected static ?int $navigationSort = 4;
+    protected static ?int $navigationSort = 8;
 
     public static function form(Schema $schema): Schema
     {

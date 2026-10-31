@@ -21,6 +21,6 @@ class SiteSetting extends Model
 
     public static function current(): self
     {
-        return static::query()->firstOrCreate([], ['name' => 'محسن موسوی میرکلایی']);
+        return once(fn (): self => static::query()->firstOrCreate([], ['name' => 'محسن موسوی میرکلایی']));
     }
 }

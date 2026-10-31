@@ -13,6 +13,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class WritingResource extends Resource
 {
@@ -20,13 +21,15 @@ class WritingResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedPencilSquare;
 
+    protected static string|UnitEnum|null $navigationGroup = 'محتوا';
+
     protected static ?string $modelLabel = 'نوشته';
 
     protected static ?string $pluralModelLabel = 'نقد و نوشتار';
 
     protected static ?string $recordTitleAttribute = 'title';
 
-    protected static ?int $navigationSort = 2;
+    protected static ?int $navigationSort = 4;
 
     public static function form(Schema $schema): Schema
     {
