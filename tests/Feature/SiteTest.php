@@ -7,6 +7,7 @@ use App\Models\SiteSetting;
 use App\Models\User;
 use Database\Seeders\ContentSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class SiteTest extends TestCase
@@ -16,6 +17,7 @@ class SiteTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
+        Storage::fake('public');
         $this->seed(ContentSeeder::class);
     }
 

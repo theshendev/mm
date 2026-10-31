@@ -9,6 +9,7 @@ use App\Models\Source;
 use App\Models\TimelineEvent;
 use App\Models\Writing;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * Initial site content, gathered from public sources (listed in the Source rows).
@@ -30,12 +31,12 @@ class ContentSeeder extends Seeder
                 'meta_description' => 'وب‌سایت محسن موسوی میرکلایی، شاعر، منتقد ادبی، روزنامه‌نگار و بازیگر تئاتر؛ نویسندهٔ «جزیره‌نشین» و گردآورندهٔ «مقالات آتشی».',
                 'about_lead' => 'محسن موسوی میرکلایی سال ۱۳۶۲ در بابلسر، کنار دریای خزر، به دنیا آمد و در بندر بوشهر، کنار خلیج فارس، بزرگ شد.',
                 'about_body' => '<p>از سال ۱۳۷۸ با بازی در نمایش «هشتمین سفر سندباد» نوشتهٔ بهرام بیضایی بازیگری تئاتر را آغاز کرد و هم‌زمان به شعر، نقد ادبی و روزنامه‌نگاری پرداخت. سال‌ها با نشریات استان بوشهر همکاری کرد و دبیر صفحات ادبی «نسیم جنوب» و «پیغام» بود.</p>'
-                    .'<p>نخستین مجموعه‌شعرش، <a href="#book-jazireh">«جزیره‌نشین»</a>، سال ۱۳۹۵ در مجموعهٔ «کتاب‌های شعر بامداد» منتشر شد. گردآوری و ویرایش <a href="#book-atashi">«مقالات آتشی»</a>، نوشته‌های پراکندهٔ منوچهر آتشی، شاعر بوشهری، از کارهای پژوهشی اوست. مستند <a href="#book-shookhi">«باور کنید: این هم یک شوخی بود!»</a> دربارهٔ زندگی و شعر علی باباچاهی را نیز در سال ۱۳۹۳ ساخته است.</p>',
+                    .'<p>نخستین مجموعه‌شعرش، <a href="#book-jazireh">«جزیره‌نشین»</a>، سال ۱۳۹۵ در مجموعهٔ «کتاب‌های شعر بامداد» منتشر شد. گردآوری و ویرایش <a href="#book-atashi">«مقالات آتشی»</a>، نوشته‌های پراکندهٔ منوچهر آتشی، شاعر بوشهری، از کارهای پژوهشی اوست. <a href="#book-soorna">«مکالمه با سورنا»</a>، مجموعهٔ گفت‌وگوهای آتشی، را با شهره رحیمی‌پور گردآوری کرده است و <a href="#book-niloofari">«نیلوفری که «آزاد» رست»</a>، دربارهٔ م. آزاد، نیز از کارهای اوست. مستند <a href="#book-shookhi">«باور کنید: این هم یک شوخی بود!»</a> دربارهٔ زندگی و شعر علی باباچاهی را نیز در سال ۱۳۹۳ ساخته است.</p>',
                 'facts' => [
                     ['label' => 'زادروز', 'value' => '۱۳۶۲، بابلسر'],
                     ['label' => 'زیستگاه', 'value' => 'بندر بوشهر'],
                     ['label' => 'نخستین صحنه', 'value' => '۱۳۷۸، «هشتمین سفر سندباد»'],
-                    ['label' => 'آثار', 'value' => 'یک دفتر شعر، یک گردآوری، یک فیلم مستند'],
+                    ['label' => 'آثار', 'value' => 'یک دفتر شعر، سه کتاب دربارهٔ شاعران، یک فیلم مستند'],
                 ],
                 'writings_intro' => 'نقد ادبی، یادداشت روزنامه و دبیری صفحه‌های ادبی.',
                 'english_body' => '<p>Mohsen Mousavi Mirkalaei (b. 1983, Babolsar) is an Iranian poet, literary critic, journalist and stage actor, raised in the port city of Bushehr on the Persian Gulf.</p>'
@@ -78,6 +79,28 @@ class ContentSeeder extends Seeder
                 'sort' => 2,
             ],
             [
+                'title' => 'مکالمه با سورنا',
+                'slug' => 'soorna',
+                'kind' => 'گردآوری و تنظیم · گفت‌وگو',
+                'cover_style' => 'ember',
+                'cover_series' => 'مجموعه گفت‌وگوهای منوچهر آتشی',
+                'cover_author' => 'م. میرکلایی، ش. رحیمی‌پور',
+                'meta' => ['گفت‌وگوهای' => 'منوچهر آتشی', 'گردآوری و تنظیم' => 'محسن میرکلایی، شهره رحیمی‌پور'],
+                'description' => 'مجموعهٔ گفت‌وگوهای منوچهر آتشی، گردآوری و تنظیم محسن میرکلایی و شهره رحیمی‌پور. «سورنا» از نام‌های شعری آتشی بود.',
+                'sort' => 3,
+            ],
+            [
+                'title' => 'نیلوفری که «آزاد» رست',
+                'slug' => 'niloofari',
+                'kind' => 'کتاب · دربارهٔ م. آزاد',
+                'cover_style' => 'sea',
+                'cover_series' => 'دربارهٔ م. آزاد',
+                'cover_author' => 'محسن میرکلایی',
+                'meta' => ['دربارهٔ' => 'محمود مشرف آزاد تهرانی (م. آزاد)'],
+                'description' => 'دربارهٔ م. آزاد (محمود مشرف آزاد تهرانی)، شاعر معاصر؛ با نام م. آزاد و محسن میرکلایی بر جلد.',
+                'sort' => 4,
+            ],
+            [
                 'title' => 'باور کنید: این هم یک شوخی بود!',
                 'slug' => 'shookhi',
                 'kind' => 'فیلم مستند · دربارهٔ علی باباچاهی',
@@ -88,12 +111,14 @@ class ContentSeeder extends Seeder
                 'description' => 'مستندی دربارهٔ زندگی و شعر علی باباچاهی، شاعر و منتقد ادبی بوشهری، به کارگردانی محسن موسوی میرکلایی. نسخهٔ منتشرشدهٔ آن را نشر سرزمین اهورایی، ناشر «جزیره‌نشین»، عرضه کرده است.',
                 'link_label' => 'مشاهده در سی‌بوک',
                 'link_url' => self::THIRTY_BOOK_URL,
-                'sort' => 3,
+                'sort' => 5,
             ],
         ];
         foreach ($books as $book) {
             Book::query()->firstOrCreate(['slug' => $book['slug']], $book);
         }
+
+        $this->attachMedia();
 
         if (! Writing::query()->exists()) {
             $writings = [
@@ -150,6 +175,31 @@ class ContentSeeder extends Seeder
         ];
         foreach ($sources as $i => $row) {
             Source::query()->firstOrCreate(['url' => $row['url']], $row + ['sort' => $i + 1]);
+        }
+    }
+
+    /**
+     * Copy the bundled cover images and portrait into the public disk, but only where the
+     * panel has not set an image yet, so uploads made by the site owner are never replaced.
+     */
+    private function attachMedia(): void
+    {
+        $media = database_path('seeders/media');
+        $disk = Storage::disk('public');
+
+        foreach (glob($media.'/covers/*.jpg') ?: [] as $file) {
+            $book = Book::query()->where('slug', pathinfo($file, PATHINFO_FILENAME))->first();
+            if ($book !== null && blank($book->cover_image)) {
+                $path = 'covers/'.basename($file);
+                $disk->put($path, file_get_contents($file));
+                $book->update(['cover_image' => $path]);
+            }
+        }
+
+        $setting = SiteSetting::query()->first();
+        if ($setting !== null && blank($setting->portrait) && is_file($media.'/portrait.jpg')) {
+            $disk->put('portraits/portrait.jpg', file_get_contents($media.'/portrait.jpg'));
+            $setting->update(['portrait' => 'portraits/portrait.jpg']);
         }
     }
 }
