@@ -2,8 +2,9 @@
 <html lang="fa" dir="rtl">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>محسن موسوی میرکلایی | شاعر و منتقد</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>محسن موسوی میرکلایی</title>
+  <meta name="claude:viewport-fit-sides" content="cover">
   <meta name="description" content="وب‌سایت محسن موسوی میرکلایی، شاعر، منتقد ادبی، روزنامه‌نگار و بازیگر تئاتر؛ نویسندهٔ «جزیره‌نشین» و گردآورندهٔ «مقالات آتشی».">
   <meta name="color-scheme" content="light dark">
   <meta property="og:title" content="محسن موسوی میرکلایی">
@@ -11,7 +12,7 @@
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@500;700&family=Vazirmatn:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,500;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&family=Noto+Naskh+Arabic:wght@400;500;700&family=Vazirmatn:wght@300;400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
   <script type="application/ld+json">
   {
@@ -29,9 +30,9 @@
   <a class="skip" href="#main">رفتن به محتوا</a>
 
   <header class="site-header" id="top">
-    <nav class="nav container" aria-label="ناوبری اصلی">
+    <nav class="nav wrap" aria-label="ناوبری اصلی">
       <a class="brand" href="#top">موسوی میرکلایی</a>
-      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="باز کردن منو">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="باز کردن منو">
         <span></span><span></span><span></span>
       </button>
       <ul class="nav-links" id="nav-links">
@@ -41,9 +42,9 @@
         <li><a href="#timeline">گاه‌شمار</a></li>
         <li><a href="#press">رسانه‌ها</a></li>
         <li><a href="#contact">تماس</a></li>
-        <li><a href="#english" lang="en" dir="ltr">EN</a></li>
+        <li><a href="#english" lang="en" dir="ltr">English</a></li>
         <li>
-          <button class="theme-toggle" aria-label="تغییر حالت روشن و تاریک" title="حالت روشن / تاریک">
+          <button class="theme-toggle" type="button" aria-label="تغییر حالت روشن و تاریک" title="روشن / تاریک">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
           </button>
         </li>
@@ -52,253 +53,268 @@
   </header>
 
   <main id="main">
-    <!-- HERO -->
+    <!-- HERO: the name above a horizon; the two coasts of his life as a latitude axis -->
     <section class="hero">
-      <div class="container hero-inner">
-        <p class="eyebrow reveal">بابلسر · بوشهر</p>
-        <h1 class="reveal">محسن موسوی میرکلایی</h1>
-        <p class="roles reveal">شاعر <span>·</span> منتقد ادبی <span>·</span> روزنامه‌نگار <span>·</span> بازیگر تئاتر</p>
-
-        <!-- PLACEHOLDER: replace with a short excerpt from «جزیره‌نشین» chosen by the poet -->
-        <figure class="hero-quote reveal">
-          <blockquote>
-            <p>جای سطرهایی از «جزیره‌نشین»</p>
-          </blockquote>
-          <figcaption>بخشی از شعر برگزیده، به انتخاب شاعر</figcaption>
-        </figure>
-
-        <div class="hero-cta reveal">
-          <a class="btn btn-primary" href="#books">کتاب‌ها</a>
-          <a class="btn btn-ghost" href="#about">دربارهٔ شاعر</a>
+      <div class="wrap hero-grid">
+        <div class="hero-main">
+          <p class="kicker">شاعر · منتقد ادبی · روزنامه‌نگار · بازیگر تئاتر</p>
+          <h1 class="hero-name"><span>محسن موسوی</span><span>میرکلایی</span></h1>
+          <p class="hero-lede">
+            زادهٔ ساحل خزر، بالیده در بندر بوشهر. نویسندهٔ مجموعه‌شعر «جزیره‌نشین» و گردآورندهٔ «مقالات آتشی».
+          </p>
+          <div class="hero-cta">
+            <a class="btn btn-solid" href="#books">کتاب‌ها</a>
+            <a class="btn btn-line" href="#about">دربارهٔ شاعر</a>
+          </div>
         </div>
+
+        <figure class="coasts" aria-label="از بابلسر تا بوشهر">
+          <svg viewBox="0 0 220 340" role="img" aria-hidden="true">
+            <line class="axis" x1="60" y1="30" x2="60" y2="310"/>
+            <g class="ticks">
+              <line x1="54" y1="30"  x2="66" y2="30"/>
+              <line x1="56" y1="66"  x2="64" y2="66"/>
+              <line x1="56" y1="102" x2="64" y2="102"/>
+              <line x1="56" y1="138" x2="64" y2="138"/>
+              <line x1="56" y1="174" x2="64" y2="174"/>
+              <line x1="56" y1="210" x2="64" y2="210"/>
+              <line x1="56" y1="246" x2="64" y2="246"/>
+              <line x1="56" y1="282" x2="64" y2="282"/>
+              <line x1="54" y1="310" x2="66" y2="310"/>
+            </g>
+            <path class="sea" d="M0 30 q6 -5 12 0 t12 0 t12 0 t12 0"/>
+            <path class="sea" d="M0 310 q6 -5 12 0 t12 0 t12 0 t12 0"/>
+            <circle class="pt" cx="60" cy="30" r="5"/>
+            <circle class="pt" cx="60" cy="310" r="5"/>
+          </svg>
+          <div class="coast coast-n">
+            <strong>بابلسر</strong>
+            <span>دریای خزر</span>
+            <span class="coord">۳۶°۴۲′ شمالی</span>
+          </div>
+          <div class="coast coast-s">
+            <strong>بوشهر</strong>
+            <span>خلیج فارس</span>
+            <span class="coord">۲۸°۵۸′ شمالی</span>
+          </div>
+          <figcaption>هشت درجه عرض جغرافیایی، میان دو دریا</figcaption>
+        </figure>
       </div>
-      <svg class="waves" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
-        <path class="w1" d="M0 70 C 240 20 480 120 720 70 S 1200 20 1440 70 V120 H0Z"/>
-        <path class="w2" d="M0 90 C 260 50 520 130 780 90 S 1240 50 1440 90 V120 H0Z"/>
-      </svg>
+      <div class="horizon" aria-hidden="true"></div>
     </section>
 
     <!-- ABOUT -->
-    <section class="section" id="about">
-      <div class="container about">
-        <div class="portrait reveal" role="img" aria-label="جای تصویر شاعر">
-          <!-- PLACEHOLDER: replace this block with <img src="assets/img/portrait.jpg" alt="محسن موسوی میرکلایی"> -->
-          <span class="portrait-mark">م</span>
-          <span class="portrait-note">جای تصویر</span>
+    <section class="band" id="about">
+      <div class="wrap about">
+        <div class="arch" role="img" aria-label="جای تصویر شاعر">
+          <!-- PLACEHOLDER: replace the two spans below with <img src="assets/img/portrait.jpg" alt="محسن موسوی میرکلایی"> -->
+          <span class="arch-mark">م</span>
+          <span class="arch-note">جای تصویر</span>
         </div>
         <div class="about-text">
-          <h2 class="section-title reveal"><span class="num">۰۱</span> درباره</h2>
-          <p class="lead reveal">
-            محسن موسوی میرکلایی در سال <strong>۱۳۶۲</strong> در <strong>بابلسر</strong>، کنار دریای خزر، به دنیا آمد
-            و در <strong>بندر بوشهر</strong>، کنار خلیج فارس، بزرگ شد. دو دریا، دو کرانه؛
-            و شاید از همین‌جاست که «جزیره» در شعر او جا خوش کرده است.
+          <h2 class="h-section">درباره</h2>
+          <p class="lead">
+            محسن موسوی میرکلایی سال ۱۳۶۲ در بابلسر، کنار دریای خزر، به دنیا آمد و در بندر بوشهر، کنار خلیج فارس، بزرگ شد.
           </p>
-          <p class="reveal">
-            او از سال ۱۳۷۸ با بازی در نمایش <em>«هشتمین سفر سندباد»</em> نوشتهٔ <strong>بهرام بیضایی</strong>
-            بازیگری در تئاتر را آغاز کرد و هم‌زمان به نوشتن شعر، نقد ادبی و روزنامه‌نگاری پرداخت.
-            سال‌ها با نشریات محلی استان بوشهر همکاری کرد و دبیر صفحات ادبی <em>«نسیم جنوب»</em> و <em>«پیغام»</em> بود.
+          <p>
+            از سال ۱۳۷۸ با بازی در نمایش «هشتمین سفر سندباد» نوشتهٔ بهرام بیضایی بازیگری تئاتر را آغاز کرد و هم‌زمان
+            به شعر، نقد ادبی و روزنامه‌نگاری پرداخت. سال‌ها با نشریات استان بوشهر همکاری کرد و دبیر صفحات ادبی
+            «نسیم جنوب» و «پیغام» بود.
           </p>
-          <p class="reveal">
-            نخستین مجموعه‌شعرش، <a href="#book-jazireh">«جزیره‌نشین»</a>، در سال ۱۳۹۵ به‌عنوان چهارمین دفتر از مجموعهٔ
-            «کتاب‌های شعر بامداد» منتشر شد. گردآوری و ویرایش <a href="#book-atashi">«مقالات آتشی»</a>، مجموعهٔ نوشته‌های
-            پراکندهٔ منوچهر آتشی، شاعر بوشهری، از کارهای پژوهشی اوست.
+          <p>
+            نخستین مجموعه‌شعرش، <a href="#book-jazireh">«جزیره‌نشین»</a>، سال ۱۳۹۵ در مجموعهٔ «کتاب‌های شعر بامداد» منتشر شد.
+            گردآوری و ویرایش <a href="#book-atashi">«مقالات آتشی»</a>، نوشته‌های پراکندهٔ منوچهر آتشی، شاعر بوشهری، از کارهای پژوهشی اوست.
           </p>
-          <ul class="facts reveal">
-            <li><span>زادروز</span>۱۳۶۲، بابلسر</li>
-            <li><span>زیستگاه</span>بندر بوشهر</li>
-            <li><span>آغاز تئاتر</span>۱۳۷۸</li>
-            <li><span>کتاب‌ها</span>۲ عنوان</li>
-          </ul>
+          <dl class="facts">
+            <div><dt>زادروز</dt><dd>۱۳۶۲، بابلسر</dd></div>
+            <div><dt>زیستگاه</dt><dd>بندر بوشهر</dd></div>
+            <div><dt>نخستین صحنه</dt><dd>۱۳۷۸، «هشتمین سفر سندباد»</dd></div>
+            <div><dt>کتاب‌ها</dt><dd>یک دفتر شعر، یک گردآوری</dd></div>
+          </dl>
         </div>
       </div>
     </section>
 
     <!-- BOOKS -->
-    <section class="section section-alt" id="books">
-      <div class="container">
-        <h2 class="section-title reveal"><span class="num">۰۲</span> کتاب‌ها</h2>
+    <section class="band band-tint" id="books">
+      <div class="wrap">
+        <h2 class="h-section">کتاب‌ها</h2>
 
-        <article class="book reveal" id="book-jazireh">
+        <article class="book" id="book-jazireh">
           <div class="cover cover-sea" aria-hidden="true">
             <span class="cover-series">کتاب‌های شعر بامداد · ۴</span>
             <span class="cover-title">جزیره‌نشین</span>
-            <svg class="cover-island" viewBox="0 0 120 40"><path d="M10 30 Q 40 6 60 22 T 110 30" /><path d="M0 34 C 20 30 40 38 60 34 S 100 30 120 34" /></svg>
+            <svg class="cover-mark" viewBox="0 0 120 40"><path d="M14 30 Q 40 8 60 22 T 106 30"/><path d="M0 34 C 20 30 40 38 60 34 S 100 30 120 34"/></svg>
             <span class="cover-author">محسن موسوی میرکلایی</span>
           </div>
           <div class="book-body">
-            <p class="book-kind">مجموعه شعر</p>
-            <h3>جزیره‌نشین</h3>
+            <p class="label">مجموعه شعر</p>
+            <h3 class="book-title">جزیره‌نشین</h3>
             <dl class="meta">
               <div><dt>ناشر</dt><dd>سرزمین اهورایی</dd></div>
               <div><dt>سال</dt><dd>۱۳۹۵</dd></div>
-              <div><dt>صفحات</dt><dd>۶۰</dd></div>
-              <div><dt>فروست</dt><dd>کتاب‌های شعر بامداد، دفتر چهارم</dd></div>
+              <div><dt>صفحه</dt><dd>۶۰</dd></div>
+              <div><dt>فروست</dt><dd>شعر بامداد، دفتر ۴</dd></div>
             </dl>
             <p>
-              نخستین دفتر شعر محسن موسوی میرکلایی. این کتاب چهارمین مجلد از مجموعهٔ «کتاب‌های شعر بامداد» است.
-              این طرح برای معرفی و حمایت از شاعران تازه‌نفس راه افتاد و نامش را به یاد زادروز احمد شاملو (بامداد) گرفته است.
+              نخستین دفتر شعر محسن موسوی میرکلایی و چهارمین مجلد از «کتاب‌های شعر بامداد». این مجموعه برای معرفی شاعران
+              تازه‌نفس راه افتاد و نامش را از «بامداد»، نام شعری احمد شاملو، گرفته است.
             </p>
-            <a class="link-arrow" href="https://www.iranketab.ir/book/20697-jazireh-neshin" target="_blank" rel="noopener">مشاهده در ایران‌کتاب</a>
+            <!-- PLACEHOLDER: replace with a short excerpt chosen by the poet -->
+            <blockquote class="excerpt is-placeholder">
+              <p>جای چند سطر از «جزیره‌نشین»</p>
+              <cite>شعر برگزیده، به انتخاب شاعر</cite>
+            </blockquote>
+            <a class="more" href="https://www.iranketab.ir/book/20697-jazireh-neshin" target="_blank" rel="noopener">مشاهده در ایران‌کتاب</a>
           </div>
         </article>
 
-        <article class="book reveal" id="book-atashi">
+        <article class="book" id="book-atashi">
           <div class="cover cover-ember" aria-hidden="true">
-            <span class="cover-series">گردآوری و ویرایش</span>
+            <span class="cover-series">گردآوری و ویرایش: م. موسوی میرکلایی</span>
             <span class="cover-title">مقالات آتشی</span>
-            <svg class="cover-island" viewBox="0 0 120 40"><path d="M20 34 L60 8 L100 34" /><path d="M0 36 H120" /></svg>
+            <svg class="cover-mark" viewBox="0 0 120 40"><path d="M24 34 L60 8 L96 34"/><path d="M0 36 H120"/></svg>
             <span class="cover-author">منوچهر آتشی</span>
           </div>
           <div class="book-body">
-            <p class="book-kind">گردآوری و ویرایش · نقد و جستار</p>
-            <h3>مقالات آتشی</h3>
+            <p class="label">گردآوری و ویرایش · نقد و جستار</p>
+            <h3 class="book-title">مقالات آتشی</h3>
             <dl class="meta">
               <div><dt>نویسنده</dt><dd>منوچهر آتشی</dd></div>
-              <div><dt>گردآورنده</dt><dd>محسن موسوی میرکلایی</dd></div>
               <div><dt>ناشر</dt><dd>افراز</dd></div>
-              <div><dt>چاپ دوم</dt><dd>۱۴۰۰، ویراست تازه</dd></div>
+              <div><dt>چاپ دوم</dt><dd>۱۴۰۰</dd></div>
+              <div><dt>ویراست</dt><dd>افزوده و نمایه‌دار</dd></div>
             </dl>
             <p>
-              مجموعهٔ مقاله‌ها و نقدهای منوچهر آتشی (۱۳۱۰–۱۳۸۴)، شاعر بزرگ دشتستانی، که در نشریات ادبی قدیمی پراکنده
-              و فراموش شده بودند. چاپ دوم در زادروز آتشی منتشر شد، با ویرایش تازه، مقاله‌های افزوده و نمایه.
+              مقاله‌ها و نقدهای منوچهر آتشی (۱۳۱۰ تا ۱۳۸۴)، شاعر دشتستانی، که در نشریات ادبی قدیمی پراکنده و فراموش شده بودند.
+              چاپ دوم در زادروز آتشی منتشر شد، با ویرایش تازه، مقاله‌های افزوده و نمایه.
             </p>
-            <blockquote class="pull">
-              گردآورنده آتشی را منتقدی تیزبین و خوانندهٔ دقیق شعر و داستان معاصر می‌داند و این کتاب را ادای دِینی به استادی که عمرش را پای شعر گذاشت.
-              <cite>به نقل از گفت‌وگوی گردآورنده با ایسنا (نقل به مضمون)</cite>
+            <blockquote class="excerpt">
+              <p>گردآورنده آتشی را منتقدی تیزبین و خوانندهٔ دقیق شعر و داستان معاصر می‌داند و این کتاب را ادای دِین به استادی که عمرش را پای شعر گذاشت.</p>
+              <cite>از گفت‌وگوی گردآورنده با ایسنا، نقل به مضمون</cite>
             </blockquote>
-            <a class="link-arrow" href="https://www.isna.ir/news/1400070301036/" target="_blank" rel="noopener">خبر چاپ دوم در ایسنا</a>
+            <a class="more" href="https://www.isna.ir/news/1400070301036/" target="_blank" rel="noopener">خبر چاپ دوم در ایسنا</a>
           </div>
         </article>
       </div>
     </section>
 
     <!-- WRITINGS -->
-    <section class="section" id="writings">
-      <div class="container">
-        <h2 class="section-title reveal"><span class="num">۰۳</span> نقد و نوشتار</h2>
-        <p class="section-intro reveal">نقدهای ادبی، یادداشت‌ها و کارهای روزنامه‌نگاری.</p>
-
-        <ol class="writings">
-          <li class="writing reveal">
-            <span class="w-date">اردیبهشت ۱۳۹۷</span>
-            <div>
+    <section class="band" id="writings">
+      <div class="wrap">
+        <h2 class="h-section">نقد و نوشتار</h2>
+        <p class="section-sub">نقد ادبی، یادداشت روزنامه و دبیری صفحه‌های ادبی.</p>
+        <ul class="writings">
+          <li>
+            <span class="w-when">اردیبهشت ۱۳۹۷</span>
+            <div class="w-body">
               <h3><a href="https://www.faratab.com/news/7937/" target="_blank" rel="noopener">شیپور نه، لالایی اصلِ این ماجراست!</a></h3>
-              <p>نقدی بر مجموعه‌شعر «لشکر شکست‌خورده‌ی کلمات» از آیدا عمیدی. عنوانش به گفتهٔ مشهور شاملو دربارهٔ شعرِ «شیپور» و «لالایی» اشاره دارد.</p>
-              <span class="w-source">فراتاب</span>
+              <p>نقدی بر مجموعه‌شعر «لشکر شکست‌خورده‌ی کلمات» از آیدا عمیدی. عنوان به گفتهٔ مشهور شاملو دربارهٔ شعرِ شیپور و شعرِ لالایی اشاره دارد.</p>
             </div>
+            <span class="w-where">فراتاب</span>
           </li>
-          <li class="writing reveal">
-            <span class="w-date">پاییز ۱۳۹۱</span>
-            <div>
-              <h3>یادداشت‌های ادبی در روزنامهٔ آرمان</h3>
-              <p>یادداشت‌ها و ستون‌های ادبی منتشرشده در روزنامهٔ سراسری آرمان.</p>
-              <span class="w-source">روزنامهٔ آرمان</span>
+          <li>
+            <span class="w-when">پاییز ۱۳۹۱</span>
+            <div class="w-body">
+              <h3>یادداشت‌های ادبی</h3>
+              <p>ستون‌ها و یادداشت‌های ادبی در روزنامهٔ سراسری آرمان.</p>
             </div>
+            <span class="w-where">روزنامهٔ آرمان</span>
           </li>
-          <li class="writing reveal">
-            <span class="w-date">سال‌های فعالیت در بوشهر</span>
-            <div>
-              <h3>دبیر صفحات ادبی «نسیم جنوب» و «پیغام»</h3>
-              <p>روزنامه‌نگاری ادبی در نشریات محلی استان بوشهر و دبیری صفحه‌های شعر و ادبیات.</p>
-              <span class="w-source">نشریات استان بوشهر</span>
+          <li>
+            <span class="w-when">بوشهر</span>
+            <div class="w-body">
+              <h3>دبیر صفحات ادبی</h3>
+              <p>روزنامه‌نگاری ادبی و دبیری صفحه‌های شعر و ادبیات در دو نشریهٔ استان بوشهر.</p>
             </div>
+            <span class="w-where">«نسیم جنوب» و «پیغام»</span>
           </li>
-        </ol>
+        </ul>
       </div>
     </section>
 
-    <!-- THEATRE -->
-    <section class="section section-dark" id="theatre">
-      <div class="container theatre">
-        <h2 class="section-title reveal"><span class="num">۰۴</span> صحنه</h2>
-        <div class="theatre-card reveal">
-          <p class="theatre-year">۱۳۷۸</p>
-          <div>
-            <h3>هشتمین سفر سندباد</h3>
-            <p>نوشتهٔ بهرام بیضایی</p>
-            <p class="muted">آغاز بازیگری در تئاتر. سندبادِ دریانورد، پیش از جزیره‌نشین.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- TIMELINE -->
-    <section class="section" id="timeline">
-      <div class="container">
-        <h2 class="section-title reveal"><span class="num">۰۵</span> گاه‌شمار</h2>
+    <!-- TIMELINE (includes stage work) -->
+    <section class="band band-deep" id="timeline">
+      <div class="wrap">
+        <h2 class="h-section">گاه‌شمار</h2>
         <ol class="timeline">
-          <li class="reveal"><span class="t-year">۱۳۶۲</span><p>تولد در بابلسر، کنار دریای خزر؛ کودکی و نوجوانی در بندر بوشهر.</p></li>
-          <li class="reveal"><span class="t-year">۱۳۷۸</span><p>آغاز بازیگری تئاتر با «هشتمین سفر سندباد» نوشتهٔ بهرام بیضایی.</p></li>
-          <li class="reveal"><span class="t-year">۱۳۹۱</span><p>یادداشت‌نویسی ادبی در روزنامهٔ آرمان.</p></li>
-          <li class="reveal"><span class="t-year">۱۳۹۵</span><p>انتشار نخستین مجموعه‌شعر، «جزیره‌نشین»، دفتر چهارم «کتاب‌های شعر بامداد».</p></li>
-          <li class="reveal"><span class="t-year">۱۳۹۷</span><p>انتشار نقد «شیپور نه، لالایی اصلِ این ماجراست!» در فراتاب.</p></li>
-          <li class="reveal"><span class="t-year">۱۴۰۰</span><p>چاپ دوم «مقالات آتشی» با ویراست تازه، مقاله‌های افزوده و نمایه (نشر افراز).</p></li>
+          <li><span class="t-year">۱۳۶۲</span><p>تولد در بابلسر، کنار دریای خزر. کودکی و نوجوانی در بندر بوشهر.</p></li>
+          <li class="t-stage"><span class="t-year">۱۳۷۸</span><p>آغاز بازیگری تئاتر با «هشتمین سفر سندباد» نوشتهٔ بهرام بیضایی.<span class="tag">صحنه</span></p></li>
+          <li><span class="t-year">۱۳۹۱</span><p>یادداشت‌نویسی ادبی در روزنامهٔ آرمان.</p></li>
+          <li><span class="t-year">۱۳۹۵</span><p>انتشار «جزیره‌نشین»، دفتر چهارم «کتاب‌های شعر بامداد».</p></li>
+          <li><span class="t-year">۱۳۹۷</span><p>نقد «شیپور نه، لالایی اصلِ این ماجراست!» در فراتاب.</p></li>
+          <li><span class="t-year">۱۴۰۰</span><p>چاپ دوم «مقالات آتشی» با ویراست تازه و نمایه، نشر افراز.</p></li>
         </ol>
       </div>
     </section>
 
     <!-- PRESS -->
-    <section class="section section-alt" id="press">
-      <div class="container">
-        <h2 class="section-title reveal"><span class="num">۰۶</span> در رسانه‌ها</h2>
-        <div class="press-grid">
-          <a class="press-card reveal" href="https://www.isna.ir/news/1400070301036/" target="_blank" rel="noopener">
+    <section class="band" id="press">
+      <div class="wrap">
+        <h2 class="h-section">در رسانه‌ها</h2>
+        <ul class="press">
+          <li>
             <span class="press-outlet">ایسنا</span>
-            <h3>چاپ دوباره «مقالات آتشی» در زادروزش</h3>
+            <h3><a href="https://www.isna.ir/news/1400070301036/" target="_blank" rel="noopener">چاپ دوباره «مقالات آتشی» در زادروزش</a></h3>
             <p>گفت‌وگو با گردآورنده دربارهٔ ویراست تازهٔ کتاب.</p>
-          </a>
-          <a class="press-card reveal" href="https://follownews.ir/%D9%85%D8%AD%D9%85%D8%AF-%D8%A2%D8%B0%D8%B1%DB%8C-%D8%AA%D8%AD%D8%AA-%D9%85%D8%B1%D8%A7%D9%82%D8%A8%D8%AA%E2%80%8C%D9%87%D8%A7%DB%8C-%D9%88%DB%8C%DA%98%D9%87/" target="_blank" rel="noopener">
-            <span class="press-outlet">ایسنا / فالو نیوز</span>
-            <h3>دربارهٔ محمد آذری، شاعر پیشکسوت</h3>
-            <p>گفته‌های موسوی میرکلایی دربارهٔ وضعیت محمد آذری، و بعدتر خبر درگذشت او.</p>
-          </a>
-          <a class="press-card reveal" href="https://borna.news/fa/amp/news/525217" target="_blank" rel="noopener">
+          </li>
+          <li>
+            <span class="press-outlet">ایسنا، به نقل فالو نیوز</span>
+            <h3><a href="https://follownews.ir/%D9%85%D8%AD%D9%85%D8%AF-%D8%A2%D8%B0%D8%B1%DB%8C-%D8%AA%D8%AD%D8%AA-%D9%85%D8%B1%D8%A7%D9%82%D8%A8%D8%AA%E2%80%8C%D9%87%D8%A7%DB%8C-%D9%88%DB%8C%DA%98%D9%87/" target="_blank" rel="noopener">دربارهٔ محمد آذری، شاعر پیشکسوت</a></h3>
+            <p>گفته‌های او دربارهٔ وضعیت محمد آذری، و بعدتر خبر درگذشت او.</p>
+          </li>
+          <li>
             <span class="press-outlet">برنا</span>
-            <h3>سه کتاب شعر به چاپ رسید</h3>
+            <h3><a href="https://borna.news/fa/amp/news/525217" target="_blank" rel="noopener">سه کتاب شعر به چاپ رسید</a></h3>
             <p>خبر انتشار «جزیره‌نشین» در مجموعهٔ «کتاب‌های شعر بامداد».</p>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ENGLISH -->
-    <section class="section english" id="english" lang="en" dir="ltr">
-      <div class="container narrow">
-        <h2 class="section-title reveal">In English</h2>
-        <p class="lead reveal">
-          <strong>Mohsen Mousavi Mirkalaei</strong> (b. 1983, Babolsar) is an Iranian poet, literary critic,
-          journalist and stage actor, raised in the port city of Bushehr on the Persian Gulf.
-        </p>
-        <p class="reveal">
-          He began acting in 1999 in Bahram Beyzaie's <em>The Eighth Voyage of Sindbad</em>, and has since written
-          poetry, criticism and literary journalism, including columns for the daily <em>Arman</em> and editing the
-          literary pages of Bushehr's <em>Nasim-e Jonub</em> and <em>Peygham</em>.
-        </p>
-        <ul class="en-books reveal">
-          <li><em>Jazireh-neshin</em> (“Island-Dweller”), poems. Sarzamin-e Ahurai, 2016. Vol. 4 of the <em>Bamdad Poetry Books</em> series.</li>
-          <li><em>Maqalat-e Atashi</em> (“Essays of Manouchehr Atashi”), compiled &amp; edited. Afraz; 2nd expanded edition 2021.</li>
+          </li>
         </ul>
       </div>
     </section>
 
+    <!-- ENGLISH -->
+    <section class="band band-tint english" id="english" lang="en" dir="ltr">
+      <div class="wrap en-grid">
+        <h2 class="h-en">In English</h2>
+        <div class="en-body">
+          <p class="en-lead">
+            Mohsen Mousavi Mirkalaei (b. 1983, Babolsar) is an Iranian poet, literary critic, journalist and stage actor,
+            raised in the port city of Bushehr on the Persian Gulf.
+          </p>
+          <p>
+            He began acting in 1999 in Bahram Beyzaie’s <em>The Eighth Voyage of Sindbad</em>, and has since written poetry,
+            criticism and literary journalism, including columns for the daily <em>Arman</em> and editing the literary pages of
+            Bushehr’s <em>Nasim-e Jonub</em> and <em>Peygham</em>.
+          </p>
+          <ul class="en-books">
+            <li><em>Jazireh-neshin</em> (Island-Dweller), poems. Sarzamin-e Ahurai, 2016. Volume 4 of the Bamdad Poetry Books series.</li>
+            <li><em>Maqalat-e Atashi</em> (Essays of Manouchehr Atashi), compiled and edited. Afraz; second, expanded edition 2021.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
     <!-- CONTACT -->
-    <section class="section section-dark" id="contact">
-      <div class="container narrow center">
-        <h2 class="section-title reveal"><span class="num">۰۷</span> تماس</h2>
-        <p class="reveal">برای گفت‌وگو، دعوت به شب شعر، نقد یا همکاری:</p>
+    <section class="band band-deep" id="contact">
+      <div class="wrap contact">
+        <h2 class="h-section">تماس</h2>
+        <p>برای شب شعر، گفت‌وگو، نقد یا همکاری:</p>
         <!-- PLACEHOLDER: replace with real contact details -->
-        <p class="contact-mail reveal"><a href="mailto:hello@example.com" dir="ltr">hello@example.com</a></p>
-        <ul class="socials reveal">
-          <li><a href="#" aria-label="اینستاگرام">اینستاگرام</a></li>
-          <li><a href="#" aria-label="تلگرام">تلگرام</a></li>
-          <li><a href="#" aria-label="ایکس">ایکس</a></li>
+        <div class="mail-row">
+          <span class="mail" id="mail" dir="ltr">hello@example.com</span>
+          <button class="copy" type="button" id="copy-mail" data-target="mail">کپی نشانی</button>
+        </div>
+        <ul class="socials">
+          <li><a href="#contact">اینستاگرام</a></li>
+          <li><a href="#contact">تلگرام</a></li>
+          <li><a href="#contact">ایکس</a></li>
         </ul>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="container">
+    <div class="wrap footer-grid">
       <details class="sources">
         <summary>منابع</summary>
         <ul>
@@ -310,7 +326,7 @@
           <li><a href="https://borna.news/fa/amp/news/525217" target="_blank" rel="noopener">برنا: سه کتاب شعر به چاپ رسید</a></li>
         </ul>
       </details>
-      <p class="copy">© <span id="year"></span> محسن موسوی میرکلایی · همهٔ حقوق محفوظ است</p>
+      <p class="copyright">© <span id="year">۱۴۰۵</span> محسن موسوی میرکلایی</p>
       <a class="to-top" href="#top">بازگشت به بالا ↑</a>
     </div>
   </footer>
