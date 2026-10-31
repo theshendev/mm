@@ -1,35 +1,62 @@
 # محسن موسوی میرکلایی: author website
 
-A static, Persian-first (RTL) website showcasing the work of **Mohsen Mousavi Mirkalaei** (محسن موسوی میرکلایی). He is a poet, literary critic, journalist and stage actor (b. 1983, Babolsar; raised in Bushehr).
+A Laravel site for the poet and critic **Mohsen Mousavi Mirkalaei** (محسن موسوی میرکلایی). It has a Persian (RTL) public page and a **Filament** admin panel for editing every piece of content.
 
-## Contents
-- **About**: biography, with a portrait placeholder
-- **Books**:
-  - «جزیره‌نشین» (poems, Sarzamin-e Ahurai, 1395, Bamdad Poetry Books vol. 4)
-  - «مقالات آتشی» (compiled & edited, Afraz, 2nd ed. 1400)
-- **Criticism & writing**: Faratab review (1397), Arman columns (1391), Bushehr literary pages
-- **Stage**, **Timeline**, **In the press**, **English summary**, **Contact**
-- All facts link to their sources in the footer.
+- Laravel 13, PHP 8.3+
+- Filament 5 admin at `/admin`, in Persian
+- SQLite by default; any Laravel-supported database works
 
-## Preview locally
+## Setup
+
 ```bash
-python3 -m http.server 8000
+composer install
+cp .env.example .env
+php artisan key:generate
+touch database/database.sqlite
+php artisan migrate --seed
+php artisan storage:link
+php artisan make:filament-user
+php artisan serve
 ```
-Then open http://localhost:8000.
 
-## Deploy (GitHub Pages)
-Repository Settings → Pages → Source: *Deploy from a branch* → choose the branch and `/ (root)`.
+Open http://localhost:8000 for the site and http://localhost:8000/admin for the panel.
 
-## Placeholders to fill in
-Search `index.html` for `PLACEHOLDER`:
-1. **Selected poem** in the hero: lines from «جزیره‌نشین» chosen by the poet. No poem text was available online, so none was invented.
-2. **Portrait**: add `assets/img/portrait.jpg` and swap in the `<img>` tag noted in the comment.
-3. **Contact**: real email and social links (Instagram / Telegram / X).
+To create the admin account during seeding instead, set `ADMIN_EMAIL` and `ADMIN_PASSWORD` in `.env` before running `php artisan db:seed`.
+
+## What the admin panel edits
+
+| Panel page | Controls |
+| --- | --- |
+| متن‌های سایت (Site text) | Name, roles line, hero intro, portrait upload, about text and facts, English summary, contact email and social links |
+| کتاب‌ها (Books) | Title, link slug, details (publisher, year…), description, excerpt, drawn-cover colours or an uploaded cover image, link |
+| نقد و نوشتار (Writings) | Reviews, columns and editorial work |
+| گاه‌شمار (Timeline) | Year, event, optional tag |
+| در رسانه‌ها (Press) | Outlet, headline, link, summary |
+| منابع (Sources) | Footer source links |
+
+You can drag lists to reorder them. Books, writings and press items have a **نمایش در سایت** toggle that hides an item without deleting it.
 
 ## Structure
+
 ```
-index.html
-assets/css/style.css   design tokens, light/dark themes, responsive layout
-assets/js/main.js      mobile nav, theme toggle, scroll reveal, active-section nav
-assets/img/favicon.svg
+app/Http/Controllers/HomeController.php   loads all content for the page
+app/Models/                               Book, Writing, TimelineEvent, PressItem, Source, SiteSetting
+app/Filament/Pages/SiteSettings.php       singleton settings form
+app/Filament/Resources/                   CRUD for each content type
+resources/views/home.blade.php            the public page
+resources/views/partials/                 inline SVG scenes (sea, night sky, windcatcher skyline)
+public/assets/                            stylesheet, script, favicon
+database/seeders/ContentSeeder.php        initial content gathered from public sources
+```
+
+## Still to fill in
+The seeder leaves these empty on purpose, because no reliable source was found. Add them in the panel:
+- a short excerpt from «جزیره‌نشین» (Books → جزیره‌نشین → گزیده)
+- a portrait (متن‌های سایت → درباره)
+- the contact email and social links (متن‌های سایت → تماس)
+
+## Tests
+
+```bash
+php artisan test
 ```
